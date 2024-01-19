@@ -3,66 +3,36 @@
 @section('title', 'home')
 
 @section('content')
-<style>
-    .head-title {
-  background: #337ab7;
-}
 
-.head-title h2 {
-  color: #fff;
-  font-size: 25px;
-  padding: 1% 5%;
-  margin-left: 50px;
-}
-
-.main-content {
-  padding: 5%;
-}
-
-.app {
-  display: flex;
-  justify-content: center;
-}
-
-.app-icon {
-  height: 150px;
-  width: 160px;
-  border-radius: 20px;
-  display: grid;
-  place-items: center;
-  transition: all 0.2s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
-.app-icon:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-.app-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-
-.app-title {
-  font-size: 20px;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.app-link {
-  color: #000;
-  text-decoration: none
-}
-</style>
 <x-top-nav></x-top-nav>
+
+{{-- <div class="top-nav">
+  <div class="d-flex justify-content-between mx-5">
+      <a href="#" class=" btn-default menu-toggle"><img id="logo" src="/image/menu.png" alt="menu"></a>
+      <a href="#menu-toggle" class="top-head"> Club - Central Management System</a>
+      <a href="#menu-toggle" class=" " id="dropdownMenuButton2" data-bs-toggle="dropdown"
+          aria-expanded="false"><img id="logo" src="/image/user.png" alt="menu"></a>
+      <ul class="dropdown-menu dropdown-menu-white mt-3 text-center" aria-labelledby="dropdownMenuButton2">
+          <img src="/image/user.png" alt="" class="log-img">
+          <div class="mt-3">
+              <h6>Omor Faruk</h6>
+              <p>user</p>
+              <form action="{{ route('logout') }}" method="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn-logout">Logout</button>
+            </form>
+          </div>
+      </ul>
+
+  </div>
+</div> --}}
+
+
 <div class="bg">
-    
 
     <div class="row main-content">
       <div class="col-md-3 col-xl-2 col-sm-6">
-        <a class="app-link" >
+        <a class="app-link" href="{{route('cdc.dashboard')}}">
           <div class="app">
             <div class="app-icon">
               <img src="image/cdc.png" alt="" />
@@ -85,7 +55,7 @@
         <a class="app-link" >
           <div class="app">
             <div class="app-icon">
-              <img src="image/rrc.png" alt="" />
+              <img src="image/yec.png" alt="" />
             </div>
           </div>
           <p class="app-title">YEC</p>
@@ -98,5 +68,29 @@
       
     </div>
   </div>
+
+  {{-- <script>
+    new Vue({
+        el: '#app',
+        data: {
+            
+        },
+        methods: {
+
+            logout() {
+                axios.get('{{ env('APP_URL') }}/logout')
+                    .then(response => {
+                        window.location.href = "{{ env('APP_URL') }}";
+                    })
+                    .catch(error => {
+                        console.log(error)
+                       
+                    });
+            },
+        },      
+    });
+</script> --}}
+
+  
 
 @endsection

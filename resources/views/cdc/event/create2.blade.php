@@ -1,0 +1,179 @@
+@extends('layouts.cdc')
+
+@section('title', '')
+
+@section('content')
+<div class="container">
+    
+    <div class="row">
+        <div class="col-md-8 col-sm-12 offset-md-2 mt-5">
+            <div class="card card-shadow">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="mt-2"> Event Create  </h5>
+                        <a href="{{route('cdc.event')}}" style="margin-right: 10px"> <img src="/image/list.png" alt="" height="25px"> </a>
+                       </div>
+                </div>
+                <div class="card-body">
+                    <form >
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="type">Type <span class="text-danger">*</span></label>
+                                <select name="type" id="type" v-model="type" class="form-control" required>
+                                    <option value="">select one</option>
+                                    <option v-for="(row,index) in types" :key="index" :value="row.value"
+                                            v-html="row.text"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="title">Title <span class="text-danger">*</span></label>
+                                <input id="title" type="text" class="form-control" v-model="title"
+                                       placeholder="Enter title" required>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="description">Description <span class="text-danger">*</span></label>
+                                <ckeditor v-model="description"></ckeditor>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="">File <span class="text-danger">*</span></label> <br>
+                                <input type="file" id="file_input" class="" name="file"
+                                       v-on:change="fileValidationCheck">
+                                <br>
+
+                                <span class="text-danger">File extension must be jpeg,jpg,png,pdf and max file size 1024KB</span>
+                            </div>
+                        </div>
+
+                        {{-- <div class="col-lg-4 col-md-4 col-sm-12">
+                            <button type="submit" class="btn btn-info">Submit</button>
+                        </div> --}}
+
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group d-flex justify-content-end">
+                        <button type="submit" class="btn-submit" @click.prevent='storeData'>Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>  
+{{-- <script src="{{ asset('js/ckeditor.js') }}"></script> --}}
+{{-- <script>
+    $(document).ready(function () {
+
+        Vue.use( CKEditor );
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            formData: {
+        title: '',
+        description:'',
+        image: null,
+        
+      },
+
+        },
+        methods: {
+            handleFileChange(event) {
+      this.formData.image = event.target.files[0];
+      
+    },
+            storeData() {
+                console.log('Form data:', this.formData);
+                // axios.get('{{ env('APP_URL') }}/test')
+                //     .then(response => {
+                //         console.log(response);
+                //         this.test = response.data;
+                //     })
+                //     .catch(error => {
+                //         console.log(error)
+
+                //     });
+            },
+           
+        },
+        
+        
+        created() {
+                // alert('ok');
+                // this.getData();
+            },
+      
+    });
+</script> --}}
+<script type="text/javascript">
+    $(document).ready(function () {
+        Vue.use(CKEditor);
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                config: {
+                    base_path: "{{ env('APP_URL')  }}",
+                    token: "{{ session('token') }}",
+                },                
+                title: '',
+                description: ''
+            },
+
+            methods: {
+
+                storeData() {
+                    alert()
+
+                    let token = this.config.token;
+
+
+
+// if (!this.title) {
+//     toastr.error("Please enter name");
+//     return false;
+// }
+
+// if (!this.description) {
+//     toastr.error("Please enter description");
+//     return false;
+// }
+
+// if (document.getElementById('file_input').files[0] == undefined) {
+//     toastr.error("Please enter image");
+//     return false;
+// }
+
+
+                },
+
+                fileValidationCheck() {
+                    let formData = new FormData();
+                    let FileSize = document.getElementById('file_input').files[0].size / 1024 / 1024; // in MiB // 1MB
+                    if (FileSize > 1) {
+                        alert('File max size must be 1024KB');
+                        $("#file_input").val('');
+                        return false;
+                    }
+                },
+
+            },
+
+        });
+
+    });
+
+
+</script>
+
+@endsection

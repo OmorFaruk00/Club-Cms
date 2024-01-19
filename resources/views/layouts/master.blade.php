@@ -15,6 +15,10 @@
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
+  <script src="{{ asset('js/axios.min.js') }}"></script>
+  <script src="{{ asset('js/vue.js') }}"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
   {{-- <script src="{{ asset('js/ckeditor.js') }}"></script> --}}
   
 
@@ -26,7 +30,9 @@
 
  
   <main>
-    @yield('content')
+    <div id='app'>
+      @yield('content')
+    </div>
   </main>
 
   

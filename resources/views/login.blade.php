@@ -3,8 +3,7 @@
 @section('title', 'home')
 
 @section('content')
-<div class="form-bg">
-    <div class="">
+<div class="form-bg">   
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="form-container">
@@ -15,16 +14,22 @@
                         </div>
                     </div>
                     <div class="right-content">
-                        <h3 class="form-title">Login</h3>
-                        <form class="form-horizontal">
+                        <h3 class="form-title">Login</h3>                     
+                        <form class="form-horizontal" @submit.prevent="login">
                             <div class="form-group">
                             <label> Email</label>
-                                <input type="email" class="form-control">
+                                <input type="email" class="form-control" name="email" id="email" v-model='email'>
+                                <div v-if="errors">
+                                    <p class="text-danger mt-2" v-if='errors' v-text='errors.office_email[0]'></p>
+                                </div>
                             </div>
                             <div class="form-group">
                             <label>Password</label>
-                                <input type="password" class="form-control">
+                                <input type="password" class="form-control" name="password" id="password" v-model='password'>
+                                <p class="text-danger mt-2" v-if='errors' v-text='errors.password[0]'></p>
                             </div>
+                            <p class="alert alert-danger mt-4 text-center h6" v-if='error_message'  v-text='error_message'></p>
+                            
                             <button class="btn signin">Login</button>
                             <div class="remember-me">
                                 <input type="checkbox" class="checkbox">
@@ -41,8 +46,55 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>   
 </div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            email: 'omorfaruk.it@diu.ac',
+            password: 'Omor@6669',           
+            message: '',
+            errors: '',
+            error_message: '',
+        },
+        methods: {
+            login() {
+                axios.post('https://api.diu.ac/auth/login', {
+                    office_email: this.email,
+                    password: this.password,
+                })
+                .then(response => {
+                    axios.post('{{ env('APP_URL') }}/login', { token: response.data.token})
+                .then(function (response) {
+                    console.log(response);
+                    window.location.href = "{{ env('APP_URL') }}/app";
+                })
+                .catch(function (error) {
+                    console.log(error.response.data.error);
+                });
+
+                  
+                })
+                .catch(error => {
+                    if(error.response.status == 422){
+                        this.errors = error.response.data;
+                        console.log(error.response.data);
+                    }
+                    
+                    if(error.response.status == 400){
+                        this.error_message = error.response.data.error;
+                        console.log(error.response.data.error);
+                    }
+                });
+            },
+        },
+        created() {
+            
+        },
+    });
+</script>
+
 
 @endsection

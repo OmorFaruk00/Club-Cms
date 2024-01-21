@@ -1,4 +1,4 @@
-@extends('layouts.cdc')
+@extends('layouts.rrc')
 
 @section('title', '')
 
@@ -9,7 +9,7 @@
             <div class="card-header bg-white">
                 <div class="d-flex justify-content-between">
                     <h5 class="mt-2"> Event list</h5>
-                    <a class="btn-submit" href="{{ route('cdc.event.create') }}"> <img src="/image/add.png" alt=""
+                    <a class="btn-submit" href="{{ route('rrc.event.create') }}"> <img src="/image/add.png" alt=""
                             height="18px" style="margin-bottom:4px"> Add New</a>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                                 <td v-text='rows.date'></td>
                                 <td> <img :src='rows.image_path' style="width: 125px"></td>
                                 <td>
-                                    <a :href="'{{ url('cdc/event') }}' + '/' + rows.id + '/edit'"
+                                    <a :href="'{{ url('rrc/event') }}' + '/' + rows.id + '/edit'"
                                         style="margin-right:10px"><img src="/image/edit.png" alt=""
                                             height="30px"></a>
                                     <a href="#" @click.prevent='deleteItem(rows.id)'><img src="/image/delete.png"
@@ -60,7 +60,7 @@
             el: '#app',
             data: {
                 events: '',
-                type:'cdc',
+                type:'rrc',
                 config: {
                     base_path: "{{ env('API_URL') }}",
                     token: "{{ session('token') }}",

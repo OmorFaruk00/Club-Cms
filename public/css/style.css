@@ -1,14 +1,14 @@
-.form-container{
+.form-container {
     background-color: #fff;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 0;
-    box-shadow: 0 0 25px -15px rgba(0,0,0,0.3);
+    box-shadow: 0 0 25px -15px rgba(0, 0, 0, 0.3);
 }
-.form-container .left-content{
-    background-image: url('/image/bg1.jpg');
+.form-container .left-content {
+    background-image: url("/image/bg1.jpg");
     background-size: cover; /* Adjust the background size as needed */
     background-position: center center; /* Adjust the background position as needed */
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     height: 100vh;
     width: 70%;
     padding: 66px 50px;
@@ -16,7 +16,7 @@
     vertical-align: top;
 }
 
-.form-container .right-content{
+.form-container .right-content {
     text-align: center;
     width: 30%;
     padding: 30px 50px;
@@ -24,9 +24,9 @@
     height: 100vh;
     padding-top: 100px;
 }
-.form-container .right-content .form-title{
+.form-container .right-content .form-title {
     color: #888;
-    font-family: 'Oswald', sans-serif;
+    font-family: "Oswald", sans-serif;
     font-size: 30px;
     font-weight: 800;
     text-align: left;
@@ -42,10 +42,17 @@
     text-align: left;
     margin: 0 0 15px;
 }
-.form-container .form-horizontal .form-group{ margin: 0 0 20px; }
-.form-container .form-horizontal .form-group:nth-of-type(2){ margin-bottom: 35px; }
-.form-container .form-horizontal .form-group label{ font-weight: 700;color:#888 }
-.form-container .form-horizontal .form-control{
+.form-container .form-horizontal .form-group {
+    margin: 0 0 20px;
+}
+.form-container .form-horizontal .form-group:nth-of-type(2) {
+    margin-bottom: 35px;
+}
+.form-container .form-horizontal .form-group label {
+    font-weight: 700;
+    color: #888;
+}
+.form-container .form-horizontal .form-control {
     color: #888;
     background: #f5f5f5;
     font-weight: 800;
@@ -57,10 +64,12 @@
     box-shadow: none;
     border: 1px solid #1093ea;
 }
-.form-container .form-horizontal .form-control:focus{ box-shadow: 0 0 5px #1093ea; }
-.form-container .form-horizontal .signin{
+.form-container .form-horizontal .form-control:focus {
+    box-shadow: 0 0 5px #1093ea;
+}
+.form-container .form-horizontal .signin {
     color: #fff;
-    background: linear-gradient(to right, #FF638E, #1093ea);
+    background: linear-gradient(to right, #ff638e, #1093ea);
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -72,22 +81,22 @@
     transition: all 0.3s ease 0s;
 }
 .form-container .form-horizontal .btn:hover,
-.form-container .form-horizontal .btn:focus{
+.form-container .form-horizontal .btn:focus {
     box-shadow: 0 0 10px #1093ea;
     outline: none;
 }
-.form-container .form-horizontal .remember-me{
+.form-container .form-horizontal .remember-me {
     width: calc(100% - 105px);
     display: inline-block;
 }
-.form-container .form-horizontal .remember-me .check-label{
+.form-container .form-horizontal .remember-me .check-label {
     color: #999;
     font-size: 12px;
     font-weight: 400;
     vertical-align: top;
     display: inline-block;
 }
-.form-container .form-horizontal .remember-me .checkbox{
+.form-container .form-horizontal .remember-me .checkbox {
     height: 17px;
     width: 17px;
     min-height: auto;
@@ -102,8 +111,8 @@
     -webkit-appearance: none;
     transition: all 0.3s ease 0s;
 }
-.form-container .form-horizontal .remember-me .checkbox:before{
-    content: '';
+.form-container .form-horizontal .remember-me .checkbox:before {
+    content: "";
     height: 5px;
     width: 10px;
     border-bottom: 2px solid #fff;
@@ -114,11 +123,19 @@
     top: 2.5px;
     transition: all 0.3s ease;
 }
-.form-container .form-horizontal .remember-me .checkbox:checked{ background-color: #1093ea; }
-.form-container .form-horizontal .remember-me .checkbox:checked:before{ opacity: 1; }
-.form-container .form-horizontal .remember-me .checkbox:not(:checked):before{ opacity: 0; }
-.form-container .form-horizontal .remember-me .checkbox:focus{ outline: none; }
-.form-container .form-horizontal .forgot{
+.form-container .form-horizontal .remember-me .checkbox:checked {
+    background-color: #1093ea;
+}
+.form-container .form-horizontal .remember-me .checkbox:checked:before {
+    opacity: 1;
+}
+.form-container .form-horizontal .remember-me .checkbox:not(:checked):before {
+    opacity: 0;
+}
+.form-container .form-horizontal .remember-me .checkbox:focus {
+    outline: none;
+}
+.form-container .form-horizontal .forgot {
     color: #999;
     font-size: 12px;
     text-align: right;
@@ -127,100 +144,112 @@
     display: inline-block;
     transition: all 0.3s ease 0s;
 }
-.form-container .form-horizontal .forgot:hover{ text-decoration: underline; }
-.form-container .right-content .separator{
+.form-container .form-horizontal .forgot:hover {
+    text-decoration: underline;
+}
+.form-container .right-content .separator {
     color: #999;
     font-size: 15px;
     text-align: center;
     margin: 0 0 15px;
     display: block;
 }
-.form-container .right-content .social-links{
+.form-container .right-content .social-links {
     text-align: center;
     padding: 0;
     margin: 0 0 25px;
     list-style: none;
 }
-.form-container .right-content .social-links li{
+.form-container .right-content .social-links li {
     margin: 0 2px 5px;
     display: inline-block;
 }
-.form-container .right-content .social-links li a{
+.form-container .right-content .social-links li a {
     color: #fff;
-    background-color: #F16262;
+    background-color: #f16262;
     font-size: 12px;
     padding: 9px 12px;
     border-radius: 5px;
     display: block;
     transition: all 0.3s ease 0s;
 }
-.form-container .right-content .social-links li:nth-child(2) a{ background-color: #3B5897; }
-.form-container .right-content .social-links li a i{ margin-right: 10px; }
-.form-container .right-content .social-links li a:hover{ box-shadow: 0 0 5px rgba(0,0,0,0.5); }
-.form-container .right-content .signup-link{
+.form-container .right-content .social-links li:nth-child(2) a {
+    background-color: #3b5897;
+}
+.form-container .right-content .social-links li a i {
+    margin-right: 10px;
+}
+.form-container .right-content .social-links li a:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.form-container .right-content .signup-link {
     color: #999;
     font-size: 13px;
 }
-.form-container .right-content .signup-link a{
-    color: #F16262;
+.form-container .right-content .signup-link a {
+    color: #f16262;
     transition: all 0.3s ease 0s;
 }
-.form-container .right-content .signup-link a:hover{ text-decoration: underline; }
-@media only screen and (max-width:767px){
-    
-    .form-container .right-content{
+.form-container .right-content .signup-link a:hover {
+    text-decoration: underline;
+}
+@media only screen and (max-width: 767px) {
+    .form-container .right-content {
         width: 100%;
         padding: 30px;
     }
-    .form-container .left-content{
+    .form-container .left-content {
         width: 100%;
         height: 30vh;
     }
-    .login-title{
+    .login-title {
         margin-top: -40px !important;
     }
-    .form-container .left-content .title{ margin: 0 0 20px; }
-    .form-container .left-content .sub-title{ font-size: 40px; }
-    .top-head{
+    .form-container .left-content .title {
+        margin: 0 0 20px;
+    }
+    .form-container .left-content .sub-title {
+        font-size: 40px;
+    }
+    .top-head {
         display: none;
     }
 }
-.login-title{
+.login-title {
     margin-top: 20%;
 }
-.text-effect{
+.text-effect {
     display: block;
     text-align: center;
     font-size: 70px;
     color: #fff;
-   
+
     position: relative;
     /* text-shadow: 2px 2px rgba(255, 0, 0, 0.8); */
     text-shadow: 2px 2px rgb(247, 245, 226, 0.8);
-   
 }
 
 .head-title {
     background: #337ab7;
-  }
-  
-  .head-title h2 {
+}
+
+.head-title h2 {
     color: #fff;
     font-size: 25px;
     padding: 1% 5%;
     margin-left: 50px;
-  }
-  
-  .main-content {
+}
+
+.main-content {
     padding: 5%;
-  }
-  
-  .app {
+}
+
+.app {
     display: flex;
     justify-content: center;
-  }
-  
-  .app-icon {
+}
+
+.app-icon {
     height: 150px;
     width: 160px;
     border-radius: 20px;
@@ -228,95 +257,93 @@
     place-items: center;
     transition: all 0.2s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  }
-  
-  .app-icon:hover {
+}
+
+.app-icon:hover {
     transform: scale(1.1);
     cursor: pointer;
-  }
-  
-  .app-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; 
-  }
-  
-  .app-title {
+}
+
+.app-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.app-title {
     font-size: 20px;
     text-align: center;
     margin-top: 20px;
-  }
-  
-  .app-link {
-    color: #000;
-    text-decoration: none
-  }
-  
-  .top-nav {
-          /* background: #0c93e7; */
-          background: #27A2B8;
-          height: 70px;
-          padding-top: 10px;
-      }
-  
-      .top-head {
-          color: #fff;
-          font-size: 30px;
-          font-weight: 600;
-          text-decoration: none
-      }
-  
-      .top-head:hover {
-          color: #fff;
-  
-      }
-  
-      .dropdown-menu {
-          height: 300px;
-          width: 250px;
-          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-          border: none;
-  
-      }
-  
-      .log-img {
-          height: 100px;
-          margin-top: 20px
-      }
-  
-      .btn-logout {
-          background: rgb(175 15 15);
-          padding: 5px 73px;
-          color: #fff;
-          text-decoration: none;
-          border-radius: 5px;
-          font-size: 20px;
-          font-weight: 600;
-          border: none;
-      }
-  
-      .btn-logout:hover {
-          background: #000;
-          color: #fff;
-          cursor: pointer;
-      }
-  
-      #logo {
-          height: 50px;
-          padding: 5px 5px 5px 5px;
-      }
-      #connectLogo {
-        height: 60px;
-        padding: 15px 0 5px 0;
-      }
-    
+}
 
-      .share-link {
-        line-height: 60px;
-        padding: 0 1em;
-        font-size: 2em;
-      }
-      #wrapper {
+.app-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.top-nav {
+    /* background: #0c93e7; */
+    background: #27a2b8;
+    height: 70px;
+    padding-top: 10px;
+}
+
+.top-head {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.top-head:hover {
+    color: #fff;
+}
+
+.dropdown-menu {
+    height: 300px;
+    width: 250px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border: none;
+}
+
+.log-img {
+    height: 100px;
+    margin-top: 20px;
+}
+
+.btn-logout {
+    background: rgb(175 15 15);
+    padding: 5px 73px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-logout:hover {
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+#logo {
+    height: 50px;
+    padding: 5px 5px 5px 5px;
+}
+#connectLogo {
+    height: 60px;
+    padding: 15px 0 5px 0;
+}
+
+.share-link {
+    line-height: 60px;
+    padding: 0 1em;
+    font-size: 2em;
+}
+#wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -379,13 +406,13 @@
     text-decoration: none;
     color: #000;
     margin-left: 40px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #1C93E7;
-    background: rgba(255,255,255,0.2);
+    color: #27A2B8;
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-nav li a:active,
@@ -398,18 +425,29 @@
     height: 65px;
     font-size: 18px;
     line-height: 60px;
+    margin-bottom: 10px;
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #000;
+    background: #fff;
+    width: 160px;
+    border-radius: 50px;
+    padding-left: 20px;
+    font-weight: 500;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-    color: #1C93E7 !important;
+    color: #27A2B8 !important;
     background: none;
 }
+.active{
+    color: #27A2B8!important;
+}
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
     #wrapper {
         padding-left: 250px;
     }
@@ -436,11 +474,12 @@
         margin-right: 0;
     }
 }
-.card-shadow{
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+.card-shadow {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
-.btn-submit{
-    background: #27A2B8;
+.btn-submit {
+    background: #27a2b8;
     color: #fff;
     font-weight: 600;
     font-size: 18px;
@@ -450,11 +489,8 @@
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
-
 }
-.btn-submit:hover{
+.btn-submit:hover {
     background: #77c3d2;
     color: #000;
-    
-
 }

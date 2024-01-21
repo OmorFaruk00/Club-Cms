@@ -10,33 +10,33 @@
             <div class="card card-shadow">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h5 class="mt-2"> Event Create  </h5>
-                        <a href="{{route('cdc.event')}}" style="margin-right: 10px"> <img src="/image/list.png" alt="" height="25px"> </a>
+                        <h5 class="mt-2"> News Activities Create  </h5>
+                        <a href="{{route('cdc.news_activities')}}" style="margin-right: 10px"> <img src="/image/list.png" alt="" height="25px"> </a>
                        </div>
                 </div>
                 <div class="card-body">
                     <form >
 
-                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
                             <div class="form-group">
                                 <label for="type">Type <span class="text-danger">*</span></label>
                                 <select name="type" id="type" v-model="type" class="form-control" required>
-                                    <option value="">select one</option>
+                                    <option value="">Select One</option>
                                     <option v-for="(row,index) in types" :key="index" :value="row.value"
                                             v-html="row.text"></option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
                             <div class="form-group">
                                 <label for="title">Title <span class="text-danger">*</span></label>
                                 <input id="title" type="text" class="form-control" v-model="title"
                                        placeholder="Enter title" required>
                             </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        </div>                       
+                       
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
                             <div class="form-group">
                                 <label for="description">Description <span class="text-danger">*</span></label>
                                 <ckeditor v-model="description"></ckeditor>
@@ -54,15 +54,13 @@
                             </div>
                         </div>
 
-                        {{-- <div class="col-lg-4 col-md-4 col-sm-12">
-                            <button type="submit" class="btn btn-info">Submit</button>
-                        </div> --}}
+                      
 
                     </form>
                 </div>
                 <div class="card-footer">
                     <div class="form-group d-flex justify-content-end">
-                        <button type="submit" class="btn-submit" @click.prevent='storeData'>Submit</button>
+                        <button type="submit" class="btn-submit" @click.prnews_activities='storeData'>Submit</button>
                     </div>
 
                 </div>
@@ -71,51 +69,7 @@
     </div>
     
 </div>  
-{{-- <script src="{{ asset('js/ckeditor.js') }}"></script> --}}
-{{-- <script>
-    $(document).ready(function () {
 
-        Vue.use( CKEditor );
-    })
-    new Vue({
-        el: '#app',
-        data: {
-            formData: {
-        title: '',
-        description:'',
-        image: null,
-        
-      },
-
-        },
-        methods: {
-            handleFileChange(event) {
-      this.formData.image = event.target.files[0];
-      
-    },
-            storeData() {
-                console.log('Form data:', this.formData);
-                // axios.get('{{ env('APP_URL') }}/test')
-                //     .then(response => {
-                //         console.log(response);
-                //         this.test = response.data;
-                //     })
-                //     .catch(error => {
-                //         console.log(error)
-
-                //     });
-            },
-           
-        },
-        
-        
-        created() {
-                // alert('ok');
-                // this.getData();
-            },
-      
-    });
-</script> --}}
 <script type="text/javascript">
     $(document).ready(function () {
         Vue.use(CKEditor);
@@ -125,34 +79,77 @@
                 config: {
                     base_path: "{{ env('APP_URL')  }}",
                     token: "{{ session('token') }}",
-                },                
-                title: '',
-                description: ''
+                }, 
+                types: [
+                        {value: 'news', text: 'News'},
+                        {value: 'activities', text: 'Activities'},
+                        {value: 'courses', text: 'Courses'},
+                        {value: 'services', text: 'Services'},
+                    ],               
+                title: '', 
+                type: '',             
+                description: '',
             },
 
             methods: {
 
                 storeData() {
-                    alert()
 
                     let token = this.config.token;
 
 
 
-// if (!this.title) {
-//     toastr.error("Please enter name");
-//     return false;
-// }
+                    if (!this.title) {
+                        toastr.error("Please enter title");
+                        return false;
+                    }
 
-// if (!this.description) {
-//     toastr.error("Please enter description");
-//     return false;
-// }
+                    if (!this.description) {
+                        toastr.error("Please enter description");
+                        return false;
+                    }
+                    if (!this.types) {
+                        toastr.error("Please enter Type");
+                        return false;
+                    }                  
 
-// if (document.getElementById('file_input').files[0] == undefined) {
-//     toastr.error("Please enter image");
-//     return false;
-// }
+                    if (document.getElementById('file_input').files[0] == undefined) {
+                        toastr.error("Please enter image");
+                        return false;
+                    }
+                    let formData = new FormData();
+                        // formData.append('type', this.type);
+                        formData.append('title', this.title);
+                        formData.append('description', this.description);
+                        formData.append('type', this.type);
+                        formData.append('web', 'cdc');
+                        formData.append("file", document.getElementById('file_input').files[0]);
+
+                        axios.post(`${this.config.base_path}/news_activities?token=${token}`, formData, {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        }).then((response) => {
+                            toastr.success(response.data.message);
+                            this.title = '';
+                            this.description = '';
+                            $("#file_input").val('');
+
+                        }).catch((error) => {
+
+                            if (error.response.status == 422) {
+                                toastr.error('Validation error');
+                                return false;
+                            }
+
+                            if (error.response.status == 400) {
+                                toastr.error(error.response.data.message);
+                                return false;
+                            }
+
+                            toastr.error("Something went wrong");
+
+                        });
 
 
                 },

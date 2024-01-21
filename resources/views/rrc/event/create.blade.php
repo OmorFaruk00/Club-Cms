@@ -1,4 +1,4 @@
-@extends('layouts.cdc')
+@extends('layouts.rrc')
 
 @section('title', '')
 
@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <h5 class="mt-2"> Event Create  </h5>
-                        <a href="{{route('cdc.event')}}" style="margin-right: 10px"> <img src="/image/list.png" alt="" height="25px"> </a>
+                        <a href="{{route('rrc.event')}}" style="margin-right: 10px"> <img src="/image/list.png" alt="" height="25px"> </a>
                        </div>
                 </div>
                 <div class="card-body">
@@ -124,7 +124,7 @@
                         // formData.append('type', this.type);
                         formData.append('title', this.title);
                         formData.append('description', this.description);
-                        formData.append('type', 'cdc');
+                        formData.append('type', 'rrc');
                         formData.append('date', this.date);
                         formData.append('location', this.location);
                         formData.append("file", document.getElementById('file_input').files[0]);

@@ -20,9 +20,6 @@
     
    
     <title>club-cms</title>
-    <style>
-       
-    </style>
 </head>
 <body>
     <x-top-nav></x-top-nav>
@@ -31,19 +28,16 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a class="{{ Request::is('cdc/dashboard') ? 'active' : '' }}" href="{{route('cdc.dashboard')}}">
+                    <a href="{{route('rrc.dashboard')}}">
                         Dashboard
                     </a>
                 </li>
                
                 <li>
-                    <a class="{{ Request::is('cdc/slider') ? 'active' : '' }}" href="{{route('cdc.slider')}}" >Slider</a>
+                    <a href="{{route('rrc.slider')}}">Slider</a>
                 </li>
                 <li>
-                    <a class="{{ Request::is('cdc/event') ? 'active' : '' }}" href="{{route('cdc.event')}}">Events</a>
-                </li>
-                <li>
-                    <a class="{{ Request::is('cdc/news_activities') ? 'active' : '' }}" href="{{route('cdc.news_activities')}}">News/Activities</a>
+                    <a href="{{route('rrc.event')}}">Events</a>
                 </li>
                 
                 

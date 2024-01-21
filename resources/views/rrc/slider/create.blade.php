@@ -1,4 +1,4 @@
-@extends('layouts.cdc')
+@extends('layouts.rrc')
 
 @section('title', '')
 
@@ -10,8 +10,8 @@
             <div class="card card-shadow">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h5 class="mt-2"> Event Create  </h5>
-                        <a href="{{route('cdc.event')}}" style="margin-right: 10px"> <img src="/image/list.png" alt="" height="25px"> </a>
+                        <h5 class="mt-2"> Slider Create  </h5>
+                        <a href="{{route('rrc.slider')}}" style="margin-right: 10px"> <img src="/image/list.png" alt="" height="25px"> </a>
                        </div>
                 </div>
                 <div class="card-body">
@@ -26,24 +26,11 @@
                                        placeholder="Enter title" required>
                             </div>
                         </div>                        
+                       
                         <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
                             <div class="form-group">
-                                <label for="title">Date <span class="text-danger">*</span></label>
-                                <input id="title" type="date" class="form-control" v-model="date"
-                                       placeholder="Enter date" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
-                            <div class="form-group">
-                                <label for="title">Location <span class="text-danger">*</span></label>
-                                <input id="location" type="text" class="form-control" v-model="location"
-                                       placeholder="Enter location" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
-                            <div class="form-group">
-                                <label for="description">Description <span class="text-danger">*</span></label>
-                                <ckeditor v-model="description"></ckeditor>
+                                <label for="description">Short Description <span class="text-danger">*</span></label>
+                                <textarea class="form-control" name="" id="" cols="30" rows="3" v-model='description'></textarea>
                             </div>
                         </div>
 
@@ -86,8 +73,7 @@
                 },                
                 title: '',              
                 description: '',
-                date:'',
-                location:'',
+               
             },
 
             methods: {
@@ -106,15 +92,7 @@
                     if (!this.description) {
                         toastr.error("Please enter description");
                         return false;
-                    }
-                    if (!this.date) {
-                        toastr.error("Please enter date");
-                        return false;
-                    }
-                    if (!this.location) {
-                        toastr.error("Please enter Location");
-                        return false;
-                    }
+                    }                
 
                     if (document.getElementById('file_input').files[0] == undefined) {
                         toastr.error("Please enter image");
@@ -124,21 +102,17 @@
                         // formData.append('type', this.type);
                         formData.append('title', this.title);
                         formData.append('description', this.description);
-                        formData.append('type', 'cdc');
-                        formData.append('date', this.date);
-                        formData.append('location', this.location);
+                        formData.append('type', 'rrc');
                         formData.append("file", document.getElementById('file_input').files[0]);
 
-                        axios.post(`${this.config.base_path}/event?token=${token}`, formData, {
+                        axios.post(`${this.config.base_path}/slider?token=${token}`, formData, {
                             headers: {
                                 'Content-Type': 'multipart/form-data'
                             }
                         }).then((response) => {
                             toastr.success(response.data.message);
 
-                            this.title = '';
-                            this.date = '';
-                            this.location = '';
+                            this.title = '';                          
                             this.description = '';
                             $("#file_input").val('');
 

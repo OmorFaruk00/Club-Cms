@@ -6,17 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Event extends Model
+class NewsActivitie extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = [
-        'type',
-        'title',
-        'slug',
-        'description',
-        'date',
-        'location',
+    protected $table = "newsActivities";
+    protected $fillable = [        
+        'type',  
+        'title',       
+        'description', 
+        'web',  
         'image_path',
         'created_by',
     ];

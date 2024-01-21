@@ -53,8 +53,8 @@
     new Vue({
         el: '#app',
         data: {
-            email: 'omorfaruk.it@diu.ac',
-            password: 'Omor@6669',           
+            email: '',
+            password: '',           
             message: '',
             errors: '',
             error_message: '',
@@ -68,7 +68,7 @@
                 .then(response => {
                     axios.post('{{ env('APP_URL') }}/login', { token: response.data.token})
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
                     window.location.href = "{{ env('APP_URL') }}/app";
                 })
                 .catch(function (error) {

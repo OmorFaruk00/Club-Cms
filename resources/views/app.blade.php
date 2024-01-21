@@ -42,7 +42,7 @@
         </a>
       </div>
       <div class="col-md-3 col-xl-2 col-sm-6">
-        <a class="app-link" >
+        <a class="app-link" href="{{route('rrc.dashboard')}}">
           <div class="app">
             <div class="app-icon">
               <img src="image/rrc.png" alt="" />

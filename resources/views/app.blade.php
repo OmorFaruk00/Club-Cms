@@ -6,27 +6,6 @@
 
 <x-top-nav></x-top-nav>
 
-{{-- <div class="top-nav">
-  <div class="d-flex justify-content-between mx-5">
-      <a href="#" class=" btn-default menu-toggle"><img id="logo" src="/image/menu.png" alt="menu"></a>
-      <a href="#menu-toggle" class="top-head"> Club - Central Management System</a>
-      <a href="#menu-toggle" class=" " id="dropdownMenuButton2" data-bs-toggle="dropdown"
-          aria-expanded="false"><img id="logo" src="/image/user.png" alt="menu"></a>
-      <ul class="dropdown-menu dropdown-menu-white mt-3 text-center" aria-labelledby="dropdownMenuButton2">
-          <img src="/image/user.png" alt="" class="log-img">
-          <div class="mt-3">
-              <h6>Omor Faruk</h6>
-              <p>user</p>
-              <form action="{{ route('logout') }}" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <button type="submit" class="btn-logout">Logout</button>
-            </form>
-          </div>
-      </ul>
-
-  </div>
-</div> --}}
-
 
 <div class="bg">
 
@@ -59,6 +38,21 @@
             </div>
           </div>
           <p class="app-title">YEC</p>
+        </a>
+      </div>
+
+      <div class="col-md-3 col-xl-2 col-sm-6">
+        <a class="app-link" href="{{route('setting.dashboard')}}" >
+          <div class="app">
+            <div class="app-icon" >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" style="height: 100px">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              </svg>
+              
+            </div>
+          </div>
+          <p class="app-title">SETTING</p>
         </a>
       </div>
       

@@ -2,12 +2,14 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CDC\EventController;
 use App\Http\Controllers\CDC\SliderController;
-use App\Http\Controllers\CDC\NewsActivitiesController;
 // use App\Http\Controllers\EventController;
 use App\Http\Controllers\CDC\FrontendController;
+use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\CDC\NewsActivitiesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +52,9 @@ Route::group(['middleware' => ['logged_in']], function () {
         Route::get('/news_activities/{id}/edit', [NewsActivitiesController::class, 'edit'])->name('news_activities.edit');
     });
 
+
+  
+
     Route::get('/event_list/{type}', [EventController::class, 'list'])->name('event.list');
     Route::post('/event', [EventController::class, 'store'])->name('event.store');
     Route::get('/event/{id}', [EventController::class, 'findItem']);
@@ -68,6 +73,22 @@ Route::group(['middleware' => ['logged_in']], function () {
     Route::get('/news_activities/{id}', [NewsActivitiesController::class, 'findItem'])->name('news_activities.find');
     Route::post('/news_activities/{id}', [NewsActivitiesController::class, 'update'])->name('news_activities.update');
     Route::delete('/news_activities/{id}', [NewsActivitiesController::class, 'delete'])->name('news_activities.delete');
+
+
+    Route::view('setting/dashboard','setting.dashboard')->name('setting.dashboard');
+    Route::get('/setting/role_permission', [RolePermissionController::class, 'rolePermission'])->name('setting.role_permission');
+    Route::get('/setting/special_permission', [RolePermissionController::class, 'specialPermission'])->name('setting.special_permission');
+    Route::post('assign_role_module', [RolePermissionController::class,'assign_role_module_store'])->name('setting.assign_role_module');
+    Route::post('assign_module_permission', [RolePermissionController::class,'assign_special_permission_store'])->name('setting.assign_module_permission');    
+    Route::get('permission/role/{id}', [RolePermissionController::class,'role'])->name('setting.role');
+    Route::get('permission/user/{id}', [RolePermissionController::class,'user'])->name('setting.user');
+
+    
+
+    Route::resource('setting/role',RoleController::class);
+
+
+
 
 });
 

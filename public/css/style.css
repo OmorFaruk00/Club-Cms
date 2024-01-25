@@ -193,6 +193,15 @@
 .form-container .right-content .signup-link a:hover {
     text-decoration: underline;
 }
+.custom-control-inline {
+    display: inline-flex;
+    margin-right: 1rem;
+}
+.custom-control {
+    
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
+}
 @media only screen and (max-width: 767px) {
     .form-container .right-content {
         width: 100%;

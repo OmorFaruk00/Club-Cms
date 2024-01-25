@@ -65,7 +65,7 @@ class SliderController extends Controller
         $data = $this->validate($request, [
             'title' => 'required|string|max:1000',
             'description' => 'required|string',
-            'file' => 'nullable', 
+            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $files = $request->file('file');

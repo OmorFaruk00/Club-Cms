@@ -45,66 +45,7 @@
         @endforeach
     @endif
 </form>
-{{-- <script type="text/javascript">
-    $(document).ready(function () {
-            $(document).ready(function() {
-            $('#role_id').select2();
-        });
-        
-        var vue = new Vue({
-            el: '#app',
-            data: {
-                config: {
-                    base_path: "{{ env('APP_URL')  }}",
-                    token: "{{ session('token') }}",
-                }, 
-                        
-                role: '', 
-                permission: '',             
-            },
-           
 
-            methods: {
-
-                getRole(){
-                    alert('ok');
-
-                },
-
-       
-
-                storePermissionData() {
-                    let data = $('#accessControlForm').serialize();
-                    // alert('ok');
-                    // console.log(data);
-
-                    let token = this.config.token;                
-
-                        axios.post(`${this.config.base_path}/assign_role_module?token=${token}`, $('#accessControlForm').serialize()).then((response) => {
-                            toastr.success('Permission Created Successfully');                           
-
-                        }).catch((error) => {
-                            if (error.response.status == 422) {
-                                toastr.error('Validation error');
-                                return false;
-                            }
-                            if (error.response.status == 400) {
-                                toastr.error(error.response.data.message);
-                                return false;
-                            }
-                            toastr.error("Something went wrong");
-
-                        });
-                },               
-
-            },
-
-        });
-
-    });
-
-
-</script> --}}
 <script type="text/javascript">
         $(document).ready(function() {
             $(document).ready(function() {

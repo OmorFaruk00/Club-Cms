@@ -3,10 +3,11 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CDC\EventController;
 use App\Http\Controllers\CDC\SliderController;
-// use App\Http\Controllers\EventController;
 use App\Http\Controllers\CDC\FrontendController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\CDC\NewsActivitiesController;
@@ -23,20 +24,15 @@ use App\Http\Controllers\CDC\NewsActivitiesController;
 */
 Route::group(['middleware' => ['redirect_to_apps']], function () {
     Route::view('/','login')->name('home'); 
-    Route::post('login', [LoginController::class, 'login']);   
+    Route::post('auth/login', [AuthController::class, 'authenticate']);   
 });
 
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
-Route::group(['middleware' => ['logged_in']], function () {
-    Route::get('/test', function () {
-        return 'user';
-    });
+Route::group(['middleware' => ['logged_in']], function () {   
     Route::view('/app','app')->name('app');
-
-
     Route::prefix('cdc')->as('cdc.')->group(function () {
         Route::view('/dashboard','cdc.dashboard')->name('dashboard');
         Route::get('/event', [EventController::class, 'index'])->name('event');
@@ -86,6 +82,9 @@ Route::group(['middleware' => ['logged_in']], function () {
     
 
     Route::resource('setting/role',RoleController::class);
+    Route::get('setting/user/list', [UserController::class,'userList'])->name('user.list');
+    Route::get('setting/user/edit/{id}', [UserController::class,'userEdit'])->name('user.editItem');
+    Route::resource('setting/user',UserController::class);
 
 
 

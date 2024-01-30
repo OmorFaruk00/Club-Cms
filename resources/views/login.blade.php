@@ -53,29 +53,21 @@
     new Vue({
         el: '#app',
         data: {
-            email: '',
-            password: '',           
+            email: 'admin@gmail.com',
+            password: 'Admin@1234',           
             message: '',
             errors: '',
             error_message: '',
         },
         methods: {
             login() {
-                axios.post('https://api.diu.ac/auth/login', {
-                    office_email: this.email,
+                axios.post('{{ env('APP_URL') }}/auth/login', {
+                    email: this.email,
                     password: this.password,
                 })
                 .then(response => {
-                    axios.post('{{ env('APP_URL') }}/login', { token: response.data.token})
-                .then(function (response) {
                     // console.log(response);
-                    window.location.href = "{{ env('APP_URL') }}/app";
-                })
-                .catch(function (error) {
-                    console.log(error.response.data.error);
-                });
-
-                  
+                    window.location.href = "{{ env('APP_URL') }}/app";                  
                 })
                 .catch(error => {
                     if(error.response.status == 422){

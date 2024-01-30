@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
@@ -36,6 +36,9 @@
                     <a class="{{ Request::is('setting/dashboard') ? 'active' : '' }}" href="{{route('cdc.dashboard')}}">
                         Dashboard
                     </a>
+                </li>
+                <li>
+                    <a class="{{ Request::is('setting/user') ? 'active' : '' }}" href="{{route('user.index')}}" > User</a>
                 </li>
                
                 <li>
@@ -70,7 +73,8 @@
         <script src="{{ asset('js/main.js') }}"></script>
         <script src="{{ asset('js/toastr.min.js') }}"></script>
         <script src="{{ asset('js/ckeditor.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+       
+       
        
        
 

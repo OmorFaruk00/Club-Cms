@@ -25,7 +25,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="(rows, key) in roles">
-                                <td v-text='key'></td>
+                                <td v-text='key+1'></td>
                                 <td v-text='rows.name'></td>
                                 <td>
                                     <a @click.prevent="editData(rows.id)" style="margin-right:10px"><img

@@ -68,7 +68,7 @@
         });
 	
 
-	$("#role_id").change(function(){
+	$("#user_id").change(function(){		
 		var id = $(this).val();
 		axios.get('{{ env('APP_URL') }}/permission/user/'+id+'?token={{ session('token') }}')
 		.then(function (response) {

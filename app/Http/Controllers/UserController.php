@@ -14,13 +14,13 @@ use App\Http\Resources\UserResource;
 class UserController extends Controller
 {
 
-    public function userList()
+    public function index()
     {
         $users =  User::with('role', 'createtedBy')->get();
         return  UserResource::collection($users);
     }
 
-    public function index()
+    public function user()
     {
         return view('setting.user.index');
     }
@@ -48,15 +48,16 @@ class UserController extends Controller
         ]);
 
         $files = $request->file('file');
-        if ($files) {
+        
             $extension = $files->getClientOriginalExtension();
             $file_name = time() . '_' . Str::random(10) . '.' . $extension;
-            $files->move(storage_path('images/user'), $file_name);
-            $data['image'] = env('APP_URL') . "/user/{$file_name}";
-        }
+            $files->move(public_path('image/user'), $file_name);
+            $data['image'] = env('APP_URL') . "/image/user/{$file_name}";
+     
 
         $data['password'] = bcrypt($request->password);
-        $data['created_by'] = Auth::id() ?? 1;
+        $data['created_by'] = Auth::id() ?? 0;
+        // return $data;
         $user = User::create($data);
         $role = [
             'role_id' => $request->role_id,
@@ -68,7 +69,7 @@ class UserController extends Controller
         return response()->json(['message' => $message], 200);
     }
 
-    public function edit($id)
+    public function userEdit($id)
 
     {
         $roles = Role::all(['id', 'name']);
@@ -101,4 +102,5 @@ class UserController extends Controller
             'message' => 'User Deleted Successfully!!',
         ]);
     }
+   
 }

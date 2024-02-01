@@ -38,11 +38,14 @@
                     </a>
                 </li>
                 <li>
-                    <a class="{{ Request::is('setting/user') ? 'active' : '' }}" href="{{route('user.index')}}" > User</a>
+                    <a class="{{ Request::is('setting/user') ? 'active' : '' }}" href="{{route('setting.user_index')}}" > User</a>
                 </li>
                
                 <li>
-                    <a class="{{ Request::is('setting/role/create') ? 'active' : '' }}" href="{{route('role.create')}}" > Create Role</a>
+                    <a class="{{ Request::is('setting/role_create') ? 'active' : '' }}" href="{{route('setting.role_create')}}" > Create Role</a>
+                </li>
+                <li>
+                    <a class="{{ Request::is('setting/cache_clear') ? 'active' : '' }}" href="{{route('setting.cache_clear')}}" > Cache Clear</a>
                 </li>
                 <li>
                     <a class="{{ Request::is('setting/role_permission') ? 'active' : '' }}" href="{{route('setting.role_permission')}}" >Role Permission</a>

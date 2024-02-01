@@ -1,10 +1,6 @@
 @extends('layouts.rrc')
-
-@section('title', '')
-
 @section('content')
-<div class="container">
-    
+<div class="container">    
     <div class="row">
         <div class="col-md-8 col-sm-12 offset-md-2 mt-5">
             <div class="card card-shadow">
@@ -15,9 +11,7 @@
                        </div>
                 </div>
                 <div class="card-body">
-                    <form >
-
-                     
+                    <form >              
 
                         <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
                             <div class="form-group">
@@ -28,16 +22,30 @@
                         </div>                        
                         <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
                             <div class="form-group">
-                                <label for="title">Date <span class="text-danger">*</span></label>
+                                <label for="title">Date </label>
                                 <input id="title" type="date" class="form-control" v-model="date"
                                        placeholder="Enter date" required>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
                             <div class="form-group">
-                                <label for="title">Location <span class="text-danger">*</span></label>
+                                <label for="title">Location </label>
                                 <input id="location" type="text" class="form-control" v-model="location"
                                        placeholder="Enter location" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                            <div class="form-group">
+                                <label for="title">Button </label>
+                                <input  type="text" class="form-control" v-model="button"
+                                       placeholder="Enter Button Name" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                            <div class="form-group">
+                                <label for="title">Button Link</label>
+                                <input  type="text" class="form-control" v-model="button_link"
+                                       placeholder="Enter Button Name" required>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
@@ -88,6 +96,8 @@
                 description: '',
                 date:'',
                 location:'',
+                button:'',
+                button_link:'',
             },
 
             methods: {
@@ -106,15 +116,7 @@
                     if (!this.description) {
                         toastr.error("Please enter description");
                         return false;
-                    }
-                    if (!this.date) {
-                        toastr.error("Please enter date");
-                        return false;
-                    }
-                    if (!this.location) {
-                        toastr.error("Please enter Location");
-                        return false;
-                    }
+                    }                
 
                     if (document.getElementById('file_input').files[0] == undefined) {
                         toastr.error("Please enter image");
@@ -126,6 +128,9 @@
                         formData.append('description', this.description);
                         formData.append('type', 'rrc');
                         formData.append('date', this.date);
+                        formData.append('location', this.location);
+                        formData.append('button', this.button);
+                        formData.append('button_link', this.button_link);
                         formData.append('location', this.location);
                         formData.append("file", document.getElementById('file_input').files[0]);
 

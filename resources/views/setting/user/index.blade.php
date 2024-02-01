@@ -9,7 +9,7 @@
             <div class="card-header bg-white">
                 <div class="d-flex justify-content-between">
                     <h5 class="mt-2"> User list</h5>
-                    <a class="btn-submit" href="{{ route('user.create') }}"> <img src="/image/add.png" alt=""
+                    <a class="btn-submit" href="{{ route('setting.user_create') }}"> <img src="/image/add.png" alt=""
                             height="18px" style="margin-bottom:4px"> Add New</a>
                 </div>
             </div>
@@ -36,9 +36,9 @@
                                 <td v-html='rows.phone'></td>
                                 <td v-html='rows.role'></td>
                                 <td v-html='rows.created_by'></td>
-                                <td> <img :src='rows.image_path' style="width: 125px"></td>
+                                <td> <img :src='rows.image' style="width:125px;height:60px"></td>
                                 <td>
-                                    <a :href="'{{ url('setting/user') }}' + '/' + rows.id + '/edit'"
+                                    <a :href="'{{ url('setting/user/edit') }}' + '/' + rows.id"
                                         style="margin-right:10px"><img src="/image/edit.png" alt=""
                                             height="30px"></a>
                                     <a href="#" @click.prevent='deleteItem(rows.id)'><img src="/image/delete.png"
@@ -73,13 +73,18 @@
             methods: {
                 getData() {
                     var token = this.config.token;
-                    axios.get(`${this.config.base_path}/setting/user/list?token=${token}`)
+                    axios.get(`${this.config.base_path}/user?token=${token}`)
                         .then(response => {
                             console.log(response.data.data);
                             this.users = response.data.data;
                         })
                         .catch(error => {
-                            console.log(error)
+                            if(error.response.status == 401){
+                                   toastr.error(error.response.data.error);
+                                 }else{
+
+                                  toastr.error('Something Went wrong')
+                                 }
 
                         });
                 },
@@ -90,7 +95,7 @@
 
                         var token = this.config.token;
 
-                        axios.delete(`${this.config.base_path}/setting/user/${id}?token=${token}`).then(
+                        axios.delete(`${this.config.base_path}/user/${id}?token=${token}`).then(
                             (response) => {
 
                                 toastr.success(response.data.message);

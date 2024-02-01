@@ -66,5 +66,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'redirect_to_apps' => \App\Http\Middleware\redirectToApps::class,
         'logged_in' => \App\Http\Middleware\LoggedIn::class,
+        'token.auth' => \App\Http\Middleware\TokenAuthMiddleware::class,
+        'CommonAccessMiddleware' => \App\Http\Middleware\CommonAccessMiddleware::class,
     ];
 }

@@ -226,7 +226,7 @@ class RolePermissionController extends Controller
             foreach ($old_permissions as $key => $old_permission) {
                 $permission_modules = explode('.', $old_permission);
 
-                if ($permission_modules[0] != 'cdc' && $permission_modules[0] != 'rrc' && $permission_modules[0] != 'yec' && $permission_modules[0] != 'setting' && $permission_modules[0] != 'event' && $permission_modules[0] != 'slider' && $permission_modules[0] != 'news_activities') {
+                if ($permission_modules[0] != 'cdc' && $permission_modules[0] != 'rrc' && $permission_modules[0] != 'yec' && $permission_modules[0] != 'setting' && $permission_modules[0] != 'event' && $permission_modules[0] != 'slider' && $permission_modules[0] != 'news_activities' && $permission_modules[0] != 'about' && $permission_modules[0] != 'team') {
                     array_push($non_module_permissions, $old_permission);
                 }
             }

@@ -1,16 +1,12 @@
 @extends('layouts.cdc')
-
-@section('title', '')
-
 @section('content')
-    <div class="">
-
+    <div>
         <div class="card card-shadow">
             <div class="card-header bg-white">
                 <div class="d-flex justify-content-between">
-                    <h5 class="mt-2"> news_activities list</h5>
-                    <a class="btn-submit" href="{{ route('cdc.news_activities.create') }}"> <img src="/image/add.png" alt=""
-                            height="18px" style="margin-bottom:4px"> Add New</a>
+                    <h5 class="mt-2"> News Activities list</h5>
+                    <a class="btn-submit" href="{{ route('cdc.news_activities.create') }}"> <img src="/image/add.png"
+                            alt="" height="18px" style="margin-bottom:4px"> Add New</a>
                 </div>
             </div>
             <div class="card-body">
@@ -29,16 +25,16 @@
                         <tbody>
                             <tr v-for="(rows, key) in news_activitiess">
                                 <td v-text='key+1'></td>
-                                <td v-text='rows.type'></td>
+                                <td style="text-transform:capitalize" v-text='rows.type'></td>
                                 <td v-text='rows.title'></td>
                                 <td v-html='rows.description'></td>
-                                <td> <img :src='rows.image_path' style="width: 125px"></td>
-                                <td>
+                                <td> <img :src='rows.image_path' style="width: 125px;height:60px"></td>
+                                <td width='100px'>
                                     <a :href="'{{ url('cdc/news_activities') }}' + '/' + rows.id + '/edit'"
                                         style="margin-right:10px"><img src="/image/edit.png" alt=""
                                             height="30px"></a>
-                                    <a href="#" @click.prnews_activities='deleteItem(rows.id)'><img src="/image/delete.png"
-                                            alt="" height="30px"></a>
+                                    <a href="#" @click.prnews_activities='deleteItem(rows.id)'><img
+                                            src="/image/delete.png" alt="" height="30px"></a>
                                 </td>
 
                             </tr>
@@ -60,7 +56,7 @@
             el: '#app',
             data: {
                 news_activitiess: '',
-                type:'cdc',
+                type: 'cdc',
                 config: {
                     base_path: "{{ env('API_URL') }}",
                     token: "{{ session('token') }}",
@@ -75,7 +71,12 @@
                             this.news_activitiess = response.data;
                         })
                         .catch(error => {
-                            console.log(error)
+                            if(error.response.status == 401){
+                                toastr.error(error.response.data.error);
+                            }else{
+
+                                toastr.error('Something Went wrong')
+                            }
 
                         });
                 },
@@ -106,5 +107,4 @@
 
         });
     </script>
-
 @endsection

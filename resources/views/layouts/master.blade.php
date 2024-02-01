@@ -22,7 +22,7 @@
   {{-- <script src="{{ asset('js/ckeditor.js') }}"></script> --}}
   
 
-  <title>club-cms</title>
+  <title>Club-Central Management System</title>
 </head>
 
 <body>

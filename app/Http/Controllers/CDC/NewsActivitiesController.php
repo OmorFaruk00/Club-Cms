@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\CDC;
 
-use App\Models\NewsActivitie;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
 use App\Libraries\Slug;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\NewsActivitie;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\Activities;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class NewsActivitiesController extends Controller
 {
@@ -35,9 +36,9 @@ class NewsActivitiesController extends Controller
         $files = $request->file('file');
         $extension = $files->getClientOriginalExtension();
         $file_name = time() . '_' . Str::random(10) . '.' . $extension;
-        $files->move(storage_path('images/NewsActivitie'), $file_name);
-        $data['created_by'] = $request->auth->id ?? 0;
-        $data['image_path'] = env('APP_URL') . "/images/NewsActivitie/{$file_name}";
+        $files->move(public_path('image/newsActivitie'), $file_name);
+        $data['created_by'] = Auth::id() ?? 0;
+        $data['image_path'] = env('APP_URL') . "/image/newsActivitie/{$file_name}";
         NewsActivitie::create($data);
 
         $message = "Created Successfully";
@@ -63,8 +64,8 @@ class NewsActivitiesController extends Controller
             $files = $request->file('file');
             $extension = $files->getClientOriginalExtension();
             $file_name = time() . '_' . Str::random(10) . '.' . $extension;
-            $files->move(storage_path('images/NewsActivitie'), $file_name);
-            $image_url = env('APP_URL') . "/images/newsActivities/{$file_name}";
+            $files->move(public_path('image/activities'), $file_name);
+            $image_url = env('APP_URL') . "/image/activities/{$file_name}";
             $data['image_path'] = $image_url;
         }
         NewsActivitie::find($id)->update($data);

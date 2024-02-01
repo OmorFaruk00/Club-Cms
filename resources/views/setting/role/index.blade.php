@@ -3,112 +3,116 @@
 @section('title', 'role')
 
 @section('content')
-    <div class="">
+<div class="">
 
-        <div class="card card-shadow">
-            <div class="card-header bg-white">
-                <div class="d-flex justify-content-between">
-                    <h5 class="mt-2"> Role list</h5>
-                    <a class="btn-submit" href="#" data-bs-toggle="modal" data-bs-target="#addModal"> <img
-                            src="/image/add.png" alt="" height="18px" style="margin-bottom:4px"> Add New</a>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered ">
-                        <thead>
-                            <tr>
-                                <th scope="col">SL</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(rows, key) in roles">
-                                <td v-text='key+1'></td>
-                                <td v-text='rows.name'></td>
-                                <td>
-                                    <a @click.prevent="editData(rows.id)" style="margin-right:10px"><img
-                                            src="/image/edit.png" alt="" height="30px"></a>
-
-                                </td>
-
-                            </tr>
-
-
-                        </tbody>
-                    </table>
-                </div>
-
+    <div class="card card-shadow">
+        <div class="card-header bg-white">
+            <div class="d-flex justify-content-between">
+                <h5 class="mt-2"> Role list</h5>
+                <a class="btn-submit" href="#" data-bs-toggle="modal" data-bs-target="#addModal"> <img
+                        src="/image/add.png" alt="" height="18px" style="margin-bottom:4px"> Add New</a>
             </div>
         </div>
-        <div class="container mt-3">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered " v-if='roles.length>0'>
+                    <thead>
+                        <tr>
+                            <th scope="col">SL</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(rows, key) in roles">
+                            <td v-text='key+1'></td>
+                            <td v-text='rows.name'></td>
+                            <td>
+                                <a @click.prevent="editData(rows.id)" style="margin-right:10px"><img
+                                        src="/image/edit.png" alt="" height="30px"></a>
+
+                            </td>
+
+                        </tr>
 
 
-            <!-- The Add Modal -->
-            <div class="modal" id="addModal">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
+                    </tbody>
+                </table>
+                <div v-else>
+                    <h4 class="text-center text-danger">No Data Available</h4>
 
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Create Role</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="title">Role Name <span class="text-danger">*</span></label>
-                                <input id="title" type="text" class="form-control" v-model="name"
-                                    placeholder="Enter title" required>
-                            </div>
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn-submit" @click.prevent="storeRole">Submit</button>
-                        </div>
-
-                    </div>
                 </div>
             </div>
 
+        </div>
+    </div>
+    <div class="container mt-3">
 
-            <!-- The Add Modal -->
-            <div class="modal" id="updateModal">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
 
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Update Role</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
+        <!-- The Add Modal -->
+        <div class="modal" id="addModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
 
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="title">Role Name <span class="text-danger">*</span></label>
-                                <input id="title" type="text" class="form-control" v-model="name"
-                                    placeholder="Enter title" required>
-                            </div>
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn-submit" @click.prevent="updateRole">Update</button>
-                        </div>
-
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create Role</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="title">Role Name <span class="text-danger">*</span></label>
+                            <input id="title" type="text" class="form-control" v-model="name" placeholder="Enter title"
+                                required>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn-submit" @click.prevent="storeRole">Submit</button>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-        <script>
-            new Vue({
+
+        <!-- The Add Modal -->
+        <div class="modal" id="updateModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Role</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="title">Role Name <span class="text-danger">*</span></label>
+                            <input id="title" type="text" class="form-control" v-model="name" placeholder="Enter title"
+                                required>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn-submit" @click.prevent="updateRole">Update</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
                 el: '#app',
                 data: {
                     config: {
@@ -125,6 +129,10 @@
 
                     storeRole() {
                         var token = this.config.token;
+                        if(!this.name){
+                            toastr.error("Please Enter Name");
+
+                        }
                         axios.post(`${this.config.base_path}/setting/role?token=${token}`, {
                                 'name': this.name
                             })
@@ -142,6 +150,10 @@
                     updateRole() {
                         const $id = this.id; 
                         var token = this.config.token;
+                        if(!this.name){
+                            toastr.error("Please Enter Name");
+
+                        }
                         axios.put(`${this.config.base_path}/setting/role/${$id}?token=${token}`, {
                                 'name': this.name
                             })
@@ -180,7 +192,12 @@
                                 this.roles = response.data;
                                 console.log(response)
                             }).catch((error) => {
-                            toastr.error("There was something wrong");
+                                if(error.response.status == 401){
+                                   toastr.error(error.response.data.error);
+                                 }else{
+
+                                  toastr.error('Something Went wrong')
+                                 }
                         });
                     },
 
@@ -191,6 +208,6 @@
                 },
 
             });
-        </script>
+    </script>
 
     @endsection

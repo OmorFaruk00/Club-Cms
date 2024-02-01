@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <h5 class="mt-2"> User Update </h5>
-                            <a href="{{ route('user.index') }}" style="margin-right: 10px"> <img src="/image/list.png"
+                            <a href="{{ route('setting.user_index') }}" style="margin-right: 10px"> <img src="/image/list.png"
                                     alt="" height="25px"> </a>
                         </div>
                     </div>
@@ -24,16 +24,16 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                     <div class="form-group">
                                         <label>Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" v-model="user.name" placeholder="Enter name"
-                                            required>
+                                        <input type="text" class="form-control" v-model="user.name"
+                                            placeholder="Enter name" required>
                                         <span class="text-danger" v-if="errors.name" v-text="errors.name[0]"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                     <div class="form-group">
                                         <label>Email <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" v-model="user.email" placeholder="Enter Email"
-                                            required>
+                                        <input type="email" class="form-control" v-model="user.email"
+                                            placeholder="Enter Email" required>
                                         <span class="text-danger" v-if="errors.email" v-text="errors.email[0]"></span>
                                     </div>
                                 </div>
@@ -42,8 +42,8 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                     <div class="form-group">
                                         <label> Phone <span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" v-model="user.phone" placeholder="Enter phone"
-                                            required>
+                                        <input type="number" class="form-control" v-model="user.phone"
+                                            placeholder="Enter phone" required>
                                         <span class="text-danger" v-if="errors.phone" v-text="errors.phone[0]"></span>
                                     </div>
                                 </div>
@@ -52,8 +52,8 @@
                                         <label for="role_id">Role <span class="text-danger">*</span></label>
 
                                         <select v-model="user.role_id" class="form-control" id="role_id">
-                                            <option v-for="(row,index) in roles" :key="index" :value="row.id"
-                                            v-html="row.name"></option>
+                                            <option v-for="(row,index) in roles" :key="index"
+                                                :value="row.id" v-html="row.name"></option>
                                         </select>
                                         <span class="text-danger" v-if="errors.role_id" v-text="errors.role_id[0]"></span>
 
@@ -88,24 +88,24 @@
                     },
 
                     id: {{ $id }},
-                   
+
                     errors: [],
-                    roles:[],
-                    user:{
-                    name: '',
-                    email: '',
-                    role_id: '',
-                    phone: '',
+                    roles: [],
+                    user: {
+                        name: '',
+                        email: '',
+                        role_id: '',
+                        phone: '',
                     }
                 },
 
                 methods: {
 
                     updateData() {
-                        let token = this.config.token;                                       
+                        let token = this.config.token;
 
-                        axios.put(`${this.config.base_path}/setting/user/${this.id}?token=${token}`,this.user,  {
-                            
+                        axios.put(`${this.config.base_path}/user/${this.id}?token=${token}`, this.user, {
+
                         }).then((response) => {
                             toastr.success(response.data.message);
 
@@ -132,7 +132,7 @@
                     fetchData() {
                         var token = this.config.token;
                         axios.get(
-                            `${this.config.base_path}/setting/user/${this.id}?token=${token}`
+                            `${this.config.base_path}/user/${this.id}?token=${token}`
                         ).then((response) => {
                             this.user.name = response.data.name;
                             this.user.email = response.data.email;
@@ -150,7 +150,7 @@
                         });
                     },
 
-                    fetchRole() {                      
+                    fetchRole() {
 
                         var token = this.config.token;
                         axios.get(

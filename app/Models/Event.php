@@ -13,10 +13,11 @@ class Event extends Model
     protected $fillable = [
         'type',
         'title',
-        'slug',
         'description',
         'date',
         'location',
+        'button',
+        'button_link',
         'image_path',
         'created_by',
     ];

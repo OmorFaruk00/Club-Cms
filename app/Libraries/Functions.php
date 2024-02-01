@@ -153,61 +153,7 @@ function isAdmin()
 {
   return true;
 }
-function smsSender($contacts, $message)
-{
 
-    $url = "http://portal.metrotel.com.bd/smsapi";
-
-    $data = [
-        "api_key" => "C20007015feaf5cba410b5.61436469",
-        "type" => "text",
-        "contacts" => $contacts,
-        "senderid" => "8809612111348",
-        "msg" => $message,
-    ];
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-
-    try {
-        $response = curl_exec($ch);
-        curl_close($ch);
-        return $response;
-    } catch (\Exception $ex) {
-
-        \Log::error(print_r($ex->message(), true));
-        return false;
-    }
-
-
-    // $apiKey = "C20035295ea81b0d403aa8.09681548";
-    // $type = 'text';
-    // $contacts = $contacts;
-    // $msg = $message;
-    // $senderId = 26536;
-    // $url = "http://bangladeshsms.com/smsapi?api_key=".urlencode($apiKey)."&type=$type&contacts=".urlencode($contacts)."&senderid=".urlencode($senderId)."&msg=".urlencode($msg);
-    // //$url = "http://bangladeshsms.com/smsapi?api_key=".$apiKey."&type=$type&contacts=".$contacts."&senderid=".$senderId."&msg=".urlencode($msg);
-    // //return $url;
-    // $ch = curl_init();
-    // curl_setopt($ch, CURLOPT_URL,$url);
-    // curl_setopt($ch, CURLOPT_HEADER, 0);
-    // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-    // curl_setopt($ch, CURLOPT_POST, 0);
-    // try{
-    //     $response = $content=curl_exec($ch);
-         
-    //      // throw new \Exception($response);
-    //     return true;
-    // }catch(Exception $ex){
-    //     return false;
-    //     // $response = "-100";
-    // }
-}
 
 /**
 *   get All Route Names as Array

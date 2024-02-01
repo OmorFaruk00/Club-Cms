@@ -1,10 +1,6 @@
 @extends('layouts.rrc')
-
-@section('title', '')
-
 @section('content')
-    <div class="">
-
+    <div>
         <div class="card card-shadow">
             <div class="card-header bg-white">
                 <div class="d-flex justify-content-between">
@@ -21,7 +17,7 @@
                                 <th scope="col">SL</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Date</th>
+                                {{-- <th scope="col">Date</th> --}}
                                 <th scope="col">Image</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -31,9 +27,9 @@
                                 <td v-text='key+1'></td>
                                 <td v-text='rows.title'></td>
                                 <td v-html='rows.description'></td>
-                                <td v-text='rows.date'></td>
-                                <td> <img :src='rows.image_path' style="width: 125px"></td>
-                                <td>
+                                {{-- <td v-text='rows.date'></td> --}}
+                                <td> <img :src='rows.image_path' style="width: 125px;height:60px"></td>
+                                <td style="width: 100px">
                                     <a :href="'{{ url('rrc/event') }}' + '/' + rows.id + '/edit'"
                                         style="margin-right:10px"><img src="/image/edit.png" alt=""
                                             height="30px"></a>
@@ -60,7 +56,7 @@
             el: '#app',
             data: {
                 events: '',
-                type:'rrc',
+                type: 'rrc',
                 config: {
                     base_path: "{{ env('API_URL') }}",
                     token: "{{ session('token') }}",
@@ -75,7 +71,12 @@
                             this.events = response.data;
                         })
                         .catch(error => {
-                            console.log(error)
+                            if(error.response.status == 401){
+                                toastr.error(error.response.data.error);
+                            }else{
+
+                                toastr.error('Something Went wrong')
+                            }
 
                         });
                 },
@@ -106,5 +107,4 @@
 
         });
     </script>
-
 @endsection

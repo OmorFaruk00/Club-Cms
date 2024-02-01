@@ -1,10 +1,6 @@
 @extends('layouts.cdc')
-
-@section('title', '')
-
 @section('content')
-    <div class="">
-
+    <div>
         <div class="card card-shadow">
             <div class="card-header bg-white">
                 <div class="d-flex justify-content-between">
@@ -20,7 +16,7 @@
                             <tr>
                                 <th scope="col">SL</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Description</th>
+                                {{-- <th scope="col">Description</th> --}}
                                 <th scope="col">Image</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -29,8 +25,8 @@
                             <tr v-for="(rows, key) in sliders">
                                 <td v-text='key+1'></td>
                                 <td v-text='rows.title'></td>
-                                <td v-html='rows.description'></td>
-                                <td> <img :src='rows.image_path' style="width: 125px"></td>
+                                {{-- <td v-html='rows.description'></td> --}}
+                                <td> <img :src='rows.image_path' style="width: 125px;height:50px"></td>
                                 <td>
                                     <a :href="'{{ url('cdc/slider') }}' + '/' + rows.id + '/edit'"
                                         style="margin-right:10px"><img src="/image/edit.png" alt=""
@@ -58,7 +54,7 @@
             el: '#app',
             data: {
                 sliders: '',
-                type:'cdc',
+                type: 'cdc',
                 config: {
                     base_path: "{{ env('API_URL') }}",
                     token: "{{ session('token') }}",
@@ -73,7 +69,12 @@
                             this.sliders = response.data;
                         })
                         .catch(error => {
-                            console.log(error)
+                            if(error.response.status == 401){
+                                toastr.error(error.response.data.error);
+                            }else{
+
+                                toastr.error('Something Went wrong')
+                            }
 
                         });
                 },
@@ -104,5 +105,4 @@
 
         });
     </script>
-
 @endsection

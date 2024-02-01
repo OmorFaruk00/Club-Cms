@@ -12,7 +12,7 @@ class RoleController extends Controller
          return Role::all(['id','name']);
 
     }
-    public function create()
+    public function createRole()
     {
          return view('setting.role.index');
 

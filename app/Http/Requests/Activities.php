@@ -28,7 +28,7 @@ class Activities extends FormRequest
             'description' => 'required|string',
             'type' => 'required',
             'web' => 'required',
-            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'file' => 'nullable'
             // 'file' =>[
             //     'image','mimes:jpeg,png,jpg,gif,svg','max:1024',
             //     Rule::requiredIf($this->id==null),

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\CDC;
 
 use App\Models\Slider;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
 use App\Libraries\Slug;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SliderController extends Controller
 {
@@ -41,9 +42,9 @@ class SliderController extends Controller
         $files = $request->file('file');             
         $extension = $files->getClientOriginalExtension();
         $file_name = time() . '_' . Str::random(10) . '.' . $extension;
-        $files->move(storage_path('images/slider'), $file_name);        
-        $data['image_path'] = env('APP_URL') . "/images/slider/{$file_name}";         
-         $data['created_by'] = $request->auth->id ?? 0;
+        $files->move(public_path('image/slider'),   $file_name );       
+        $data['image_path'] = env('APP_URL') . "/image/slider/{$file_name}";         
+         $data['created_by'] = Auth::id() ?? 0;
         Slider::create($data);
 
         $message = "created successfully";
@@ -64,16 +65,16 @@ class SliderController extends Controller
 
         $data = $this->validate($request, [
             'title' => 'required|string|max:1000',
-            'description' => 'required|string',
-            'file' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'description' => 'nullable',
+            'file' => 'nullable'
         ]);
 
         $files = $request->file('file');
         if($files){
         $extension = $files->getClientOriginalExtension();
         $file_name = time() . '_' . Str::random(10) . '.' . $extension;
-        $files->move(storage_path('images/slider'), $file_name);
-        $data['image_path'] = env('APP_URL') . "/images/slider/{$file_name}";
+        $files->move(public_path('image/slider'), $file_name);
+        $data['image_path'] = env('APP_URL') . "/image/slider/{$file_name}";
         }
         Slider::find($id)->update($data);
 

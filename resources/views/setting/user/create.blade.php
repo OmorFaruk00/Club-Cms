@@ -1,7 +1,4 @@
 @extends('layouts.settings')
-
-@section('name', 'user create')
-
 @section('content')
 <div class="container">
     
@@ -11,7 +8,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <h5 class="mt-2"> User Create  </h5>
-                        <a href="{{route('user.index')}}" style="margin-right: 10px"> <img src="/image/list.png" alt="" height="25px"> </a>
+                        <a href="{{route('setting.user_index')}}" style="margin-right: 10px"> <img src="/image/list.png" alt="" height="25px"> </a>
                        </div>
                 </div>
                 <div class="card-body">
@@ -169,7 +166,7 @@
                         formData.append('role_id', document.getElementById('role_id').value);
                         formData.append("file", document.getElementById('file_input').files[0]);
 
-                        axios.post(`${this.config.base_path}/setting/user?token=${token}`, formData, {
+                        axios.post(`${this.config.base_path}/user?token=${token}`, formData, {
                             headers: {
                                 'Content-Type': 'multipart/form-data'
                             }
@@ -177,7 +174,11 @@
                             toastr.success(response.data.message);
 
                             // this.name = '';                          
-                            // this.description = '';
+                            // this.email = '';                          
+                            // this.phone = '';                          
+                            // this.password = '';                          
+                            // this.confirm_password = '';                          
+                            // this.role_id = '';                          
                             // $("#file_input").val('');
 
                         }).catch((error) => {

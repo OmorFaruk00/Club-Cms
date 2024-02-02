@@ -43,17 +43,17 @@ class UserController extends Controller
             ],
             'role_id' => 'required',
             'phone' => 'required',
-            // 'file' => 'required|mimes:jpeg,jpg,png|max:1024', // 1024 = 1MB
+            'file' => 'required|mimes:jpeg,jpg,png|max:1024', // 1024 = 1MB
 
         ]);
 
         $files = $request->file('file');
-        
-            $extension = $files->getClientOriginalExtension();
-            $file_name = time() . '_' . Str::random(10) . '.' . $extension;
-            $files->move(public_path('image/user'), $file_name);
-            $data['image'] = env('APP_URL') . "/image/user/{$file_name}";
-     
+
+        $extension = $files->getClientOriginalExtension();
+        $file_name = time() . '_' . Str::random(10) . '.' . $extension;
+        $files->move(public_path('image/user'), $file_name);
+        $data['image'] = env('APP_URL') . "/image/user/{$file_name}";
+
 
         $data['password'] = bcrypt($request->password);
         $data['created_by'] = Auth::id() ?? 0;
@@ -85,11 +85,20 @@ class UserController extends Controller
 
         $data = $this->validate($request, [
             'name' => 'required|string|max:1000',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email,'. $id,
             'role_id' => 'required',
             'phone' => 'required',
 
-        ]);       
+        ]);
+
+        $files = $request->file('file');
+        if ($files) {
+            $extension = $files->getClientOriginalExtension();
+            $file_name = time() . '_' . Str::random(10) . '.' . $extension;
+            $files->move(public_path('image/user'), $file_name);
+            $data['image'] = env('APP_URL') . "/image/user/{$file_name}";
+        }
+
         User::find($id)->update($data);
         $message = "User Updated Successfully!!";
         return response()->json(['message' => $message], 200);
@@ -102,5 +111,4 @@ class UserController extends Controller
             'message' => 'User Deleted Successfully!!',
         ]);
     }
-   
 }

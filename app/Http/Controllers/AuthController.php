@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -53,7 +54,7 @@ class AuthController extends Controller
             Session::put('token', $token);
             return response()->json(['token' => $token], 200);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['error' => "Password Doesn't Match"], 401);
         }
     }
 
@@ -64,5 +65,33 @@ class AuthController extends Controller
         Session::flush();
         // Redirect to the login page
         return redirect()->route('home');
+    }
+
+
+    public function changePassword(){
+        return view('setting.change-password');
+    }
+    public function changePasswordStore(){
+        $data = $this->validate($this->request, [ 
+                'old_password'=>'required',             
+                'password' => [
+                    'required','confirmed',
+                    'string',
+                    'min:8',
+                    'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/',
+                ],
+                
+    
+            ]);        
+
+        if (Auth::check() && Hash::check(request('old_password'), Auth::user()->password)) {
+          
+            User::find(Auth::id())->update(['password'=>bcrypt($this->request->password)]);
+
+            $message = "Password Change Successfully!!";
+        return response()->json(['message' => $message], 200);
+        } else {
+            return response()->json(['error' => "Old Password Doesn't Match"], 400);
+        }
     }
 }

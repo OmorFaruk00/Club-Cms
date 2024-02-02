@@ -45,6 +45,8 @@ Route::group(['middleware' => ['logged_in']], function () {
     Route::get('setting/user', [UserController::class, 'user'])->name('setting.user_index');
     Route::get('setting/user_create', [UserController::class, 'create'])->name('setting.user_create');
     Route::get('setting/user/edit/{id}', [UserController::class, 'userEdit'])->name('setting.user_edit');
+    Route::get('setting/change_password', [AuthController::class, 'changePassword'])->name('setting.change_password');
+   
 });
 
 Route::middleware('token.auth')->group(function () {
@@ -86,19 +88,14 @@ Route::middleware('token.auth')->group(function () {
         Route::post('assign_module_permission', [RolePermissionController::class, 'assign_special_permission_store'])->name('setting.assign_module_permission');
         Route::get('permission/role/{id}', [RolePermissionController::class, 'role'])->name('setting.role');
         Route::get('permission/user/{id}', [RolePermissionController::class, 'user'])->name('setting.user');
+        Route::post('setting/change_password', [AuthController::class, 'changePasswordStore'])->name('setting.change_password_store');
 
-        Route::resource('user', UserController::class)->names([
-            'index' => 'user.index',
-            'store' => 'user.store',
-            'show' => 'user.show',
-            'update' => 'user.update',
-            'destroy' => 'user.destroy']);
 
-        // Route::get('/user', [UserController::class,'userList'])->name('user.list');
-        // Route::get('/user/{id}', [UserController::class,'show'])->name('user.show');
-        // Route::post('user/store', [UserController::class,'store'])->name('user.store');
-        // Route::put('/user/update/{id}', [UserController::class,'update'])->name('user.update');
-        // Route::delete('user/{id}', [UserController::class,'destroy'])->name('user.delete');
+        Route::get('/user', [UserController::class,'index'])->name('user.list');
+        Route::get('/user/{id}', [UserController::class,'show'])->name('user.show');
+        Route::post('user', [UserController::class,'store'])->name('user.store');
+        Route::post('/user/{id}', [UserController::class,'update'])->name('user.update');
+        Route::delete('user/{id}', [UserController::class,'destroy'])->name('user.delete');
 
     });
 });

@@ -138,26 +138,16 @@
                 },
 
                 storeData() {
-                    // console.log(document.getElementById('role_id').value);
-
                     let token = this.config.token;
+                    if (this.password !== this.confirm_password) {
+                        toastr.error("Confirm password doesn't match");
+                        return false;
+                    }                                 
 
-
-
-                    // if (this.password !== this.confirm_password) {
-                    //     toastr.error("Confirm password doesn't match");
-                    //     return false;
-                    // }
-
-                    // if (!this.description) {
-                    //     toastr.error("Please enter description");
-                    //     return false;
-                    // }                
-
-                    // if (document.getElementById('file_input').files[0] == undefined) {
-                    //     toastr.error("Please enter image");
-                    //     return false;
-                    // }
+                    if (document.getElementById('file_input').files[0] == undefined) {
+                        toastr.error("Please enter image");
+                        return false;
+                    }
                     let formData = new FormData();
                         formData.append('name', this.name);
                         formData.append('email', this.email);
@@ -173,20 +163,19 @@
                         }).then((response) => {
                             toastr.success(response.data.message);
 
-                            // this.name = '';                          
-                            // this.email = '';                          
-                            // this.phone = '';                          
-                            // this.password = '';                          
-                            // this.confirm_password = '';                          
-                            // this.role_id = '';                          
-                            // $("#file_input").val('');
+                            this.name = '';                          
+                            this.passsword = '';                          
+                            this.confirm_password = '';                          
+                            this.email = '';                          
+                            this.phone = '';                          
+                            this.role_id = '';                          
+                            $("#file_input").val('');
 
                         }).catch((error) => {
 
                             if (error.response.status == 422) {
                                 
                                 this.errors = error.response.data.errors
-                                console.log(this.errors.email[0])
                                 toastr.error('Validation error');
                                 return false;
                             }

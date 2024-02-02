@@ -202,6 +202,17 @@
     min-height: 1.5rem;
     padding-left: 1.5rem;
 }
+@media only screen and (max-width: 1280px) {
+    .text-effect {
+        
+        font-size: 40px !important;
+   
+    }
+    .login-title {
+        margin-top: 200px !important;
+    }
+
+}
 @media only screen and (max-width: 767px) {
     .form-container .right-content {
         width: 100%;
@@ -309,7 +320,7 @@
 }
 
 .dropdown-menu {
-    height: 300px;
+    height: 320px;
     width: 250px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
         rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -325,16 +336,32 @@
 
 .btn-logout {
     background: rgb(175 15 15);
-    padding: 5px 73px;
+    padding: 5px 75px;
     color: #fff;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 20px;
+    border-radius: 20px;
+    font-size: 18px;
     font-weight: 600;
     border: none;
 }
 
 .btn-logout:hover {
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+.btn-change {
+    background: #27A2B8;
+    padding: 10px 40px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-change:hover {
     background: #000;
     color: #fff;
     cursor: pointer;
@@ -520,3 +547,4 @@
     color: #000;
   
 }
+

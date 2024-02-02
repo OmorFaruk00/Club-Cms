@@ -12,7 +12,7 @@
             aria-expanded="false"><img id="logo" src="/image/user3.png" alt="menu"></a>
         <ul class="dropdown-menu dropdown-menu-white mt-3 text-center" aria-labelledby="dropdownMenuButton2">
             <img src="{{$user->image ?? null}}" alt="" class="profile-img">
-            <div class="mt-3">
+            <div class="my-3">
                 <h6>{{$user->name ?? null}}</h6>
                 <p>{{$user->email ?? null}}</p>
                 <form action="{{ route('logout') }}" method="POST">
@@ -20,6 +20,7 @@
                   <button type="submit" class="btn-logout">Logout</button>
               </form>
             </div>
+            <a href="{{route('setting.change_password')}}" class="btn-change">Change Password</a>
         </ul>
         
     </div>

@@ -14,6 +14,7 @@
                         </div>
                     </div>
                     <div class="right-content">
+                        <img src="/image/diu.png" alt="" class="mb-5">
                         <h3 class="form-title">Login</h3>                     
                         <form class="form-horizontal" @submit.prevent="login">
                             <div class="form-group">
@@ -32,17 +33,21 @@
                             
                             <button class="btn signin">Login</button>
                             <div class="remember-me">
-                                <input type="checkbox" class="checkbox">
-                                <span class="check-label">Remember Me</span>
+                                <input type="checkbox" class="checkbox" name="remember" id="remember">
+                                <label class="check-label" for="remember">{{ __('Remember Me') }}</label>
                             </div>
                             <a href="" class="forgot">Forgot Password</a>
                         </form>
-                        <span class="separator">OR</span>
-                        <ul class="social-links">
-                            <li><a href=""><i class="fab fa-google"></i> Login with Google</a></li>
-                            <li><a href=""><i class="fab fa-facebook-f"></i> Login with Facebook</a></li>
-                        </ul>
-                        <span class="signup-link">Don't have an account? Sign up <a href="">here</a></span>
+                       
+
+                        <div class="" style="color:red">
+                            <p class="" style="color:red">Developed & Powered by: IT-Team, DIU</p>
+                            {{-- <p>© {{ Carbon\Carbon::now()->format('Y') }} <a href="https://diu.ac/" target="_blank">Dhaka International University</a></p>
+                            <p>Any advice, complaint or query: <a href="mailto:it@diu-bd.net">it@diu-bd.net</a></p> --}}
+                        </div>
+                      
+                        <p class="signup-link">Developed & Powered by: <strong style="color:#248FE3">IT-Team, DIU</strong></p>
+                        <p class="signup-link">© {{ Carbon\Carbon::now()->format('Y') }} <strong style="color:#248FE3">Dhaka International University </strong></p>
                     </div>
                 </div>
             </div>
@@ -53,8 +58,8 @@
     new Vue({
         el: '#app',
         data: {
-            email: 'admin@gmail.com',
-            password: 'Admin@1234',           
+            email: '',
+            password: '',           
             message: '',
             errors: '',
             error_message: '',
@@ -76,6 +81,10 @@
                     }
                     
                     if(error.response.status == 400){
+                        this.error_message = error.response.data.error;
+                        console.log(error.response.data.error);
+                    }
+                    if(error.response.status == 401){
                         this.error_message = error.response.data.error;
                         console.log(error.response.data.error);
                     }

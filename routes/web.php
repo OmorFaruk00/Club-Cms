@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CacheClearController;
-use App\Http\Controllers\CDC\AboutController;
-use App\Http\Controllers\CDC\EventController;
-use App\Http\Controllers\CDC\NewsActivitiesController;
-use App\Http\Controllers\CDC\SliderController;
-use App\Http\Controllers\CDC\TeamController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\NewsActivitiesController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\UserController;

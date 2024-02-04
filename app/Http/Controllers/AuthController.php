@@ -72,7 +72,7 @@ class AuthController extends Controller
         return view('setting.change-password');
     }
     public function changePasswordStore(){
-        $data = $this->validate($this->request, [ 
+        $this->validate($this->request, [ 
                 'old_password'=>'required',             
                 'password' => [
                     'required','confirmed',

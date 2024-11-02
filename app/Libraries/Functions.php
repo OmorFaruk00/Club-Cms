@@ -200,9 +200,9 @@ function getAllLogedinUserCanAccessRouteNameAsArray()
 {
     $routeNames = [];
 
-$avoidableMiddlewares = ['CommonAccessMiddleware'];
+  $avoidableMiddlewares = ['CommonAccessMiddleware'];
 
-return $routeNames;    
+    return $routeNames;    
 
     $routeNames = [];
 
